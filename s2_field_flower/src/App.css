@@ -1,3 +1,34 @@
-.s2-header{
-  color:grey;
+body{
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+header{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+section{
+  display: flex;
+  width: 100%; 
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.flower-container{
+  text-align: center;
+  width: 40%;
+}
+
+.flower-container h3{
+  margin: 0;
+}
+
+
+/* Fixes issues of viz taking up entire parent */
+.VictoryContainer{
+  height: unset !important;
+  width: unset !important;
 }

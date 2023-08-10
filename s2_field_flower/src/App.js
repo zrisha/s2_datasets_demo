@@ -15,26 +15,28 @@ function App() {
   return (
     <div className="App">
       <header>
+        <h3>Field Flowers: Visualizing Citation Patterns</h3>
         <SelectField 
           fields={Object.keys(fieldCites)}
           setFields={setFields}
           selectedFields={selectedFields}
         />
       </header>
-      <div style={{width: '100%', margin: '25px', display: 'flex', flexWrap: 'wrap'}}>
-            {selectedFields.map((elem) => (
-                <div style={{width: '25%'}}>
-                <Flower
-                  fieldCites = {fieldCites}
-                  fieldCitedBy = {fieldCitedBy}
-                  field = {elem}
-                  color = {color}
-                  decimal={true}
-                  key={elem}
-                />
-              </div>
-            ))}
+      <section>
+        {selectedFields.map((elem) => (
+            <div className='flower-container'>
+              <Flower
+                fieldCites = {fieldCites}
+                fieldCitedBy = {fieldCitedBy}
+                field = {elem}
+                color = {color}
+                decimal={true}
+                key={elem}
+              />
+              <h3>{elem}</h3>
           </div>
+        ))}
+        </section>
     </div>
   );
 }
