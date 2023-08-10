@@ -36,7 +36,7 @@ class Flower extends React.Component {
       <VictoryChart
         polar
         label={field}
-        animate={{ duration: 1000, onLoad: { duration: 1000 } }}
+        animate={{duration: 1500, delay: 200, onLoad: {duration: 1500}, onEnter: {duration: 1500}}}
         theme={VictoryTheme.material}
         innerRadius={(targetField[field] *  percentFactor) * .85}
         padding={55}
