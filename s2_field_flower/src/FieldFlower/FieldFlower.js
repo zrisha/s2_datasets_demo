@@ -3,6 +3,7 @@ import CenterLabel from './CenterLabel';
 import Pistil from './Pistil';
 import omit from 'lodash/omit'
 import {VictoryChart, VictoryPolarAxis, VictoryStack, VictoryBar, VictoryTheme} from 'victory';
+import sortBy from 'lodash/sortBy';
 
 
 
@@ -23,14 +24,13 @@ class Flower extends React.Component {
 
   render() {
     const { color, field, fieldCites, fieldCitedBy, decimal } = this.props;
-
     const targetField = fieldCites[field];
     const otherFields = omit(targetField, field);
     const targetFieldCited = fieldCitedBy[field];
 
     const percentFactor = decimal ? 100 : 1;
-
-    const data = this.formatData(targetField, otherFields, targetFieldCited, percentFactor);
+    let data = this.formatData(targetField, otherFields, targetFieldCited, percentFactor);
+    data = sortBy(data, o => o.field)
 
     return (
       <VictoryChart
@@ -72,7 +72,7 @@ class Flower extends React.Component {
             tickLabels: {fontSize: 9}
           }}
           tickValues={Object.keys(otherFields).map((k) => +k)}
-          tickFormat={Object.keys(otherFields)}
+          tickFormat={Object.keys(otherFields).sort()}
         />
         <VictoryStack>
           <VictoryBar
