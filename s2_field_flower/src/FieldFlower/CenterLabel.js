@@ -3,8 +3,9 @@ import { VictoryLabel } from 'victory';
 
 class CenterLabel extends React.Component {
   render() {
-    const { datum, active, color, field } = this.props;
-    const text = [ `${datum.xName}`, `${Math.round(datum._y1)}` ];
+    const { datum, active, color } = this.props;
+    const text = [ `${Math.round(datum['cites'] * 100) / 100}%`, 'of citations' ];
+
     const baseStyle = { fill: color.highlight, textAnchor: "middle" };
     const style = [
       { ...baseStyle, fontSize: 12 },
@@ -16,10 +17,7 @@ class CenterLabel extends React.Component {
         <VictoryLabel
           text={text} style={style} x={175} y={175} renderInPortal
         />
-      ) : 
-      <VictoryLabel
-        text={() => field ? field.split(' ') : ""} style={style} x={175} y={175} renderInPortal
-      />;
+      ) :  null;
   }
 }
 

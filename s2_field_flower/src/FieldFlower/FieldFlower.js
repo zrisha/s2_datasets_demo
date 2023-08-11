@@ -14,7 +14,7 @@ class Flower extends React.Component {
       const citedBy =  targetFieldCited[field] * percentFactor;
       return {
         cites,
-        citedBy: 100*(citedBy / (cites + citedBy)),
+        citedBy: 100 * (citedBy / (cites + citedBy)),
         length: 100 - 100*(citedBy / (cites + citedBy)),
         field
       };
@@ -36,7 +36,6 @@ class Flower extends React.Component {
       <VictoryChart
         polar
         label={field}
-        animate={{duration: 1500, delay: 200, onLoad: {duration: 1500}, onEnter: {duration: 1500}}}
         theme={VictoryTheme.material}
         innerRadius={(targetField[field] *  percentFactor) * .85}
         padding={55}
@@ -78,29 +77,33 @@ class Flower extends React.Component {
         <VictoryStack>
           <VictoryBar
             style={{ data: {
-              fill: ({ active }) => active ? color.primary.highlight : color.primary.base,
-              width: ({datum}) => 2+ datum.cites
+              fill: color.primary.base,
+              width: ({datum}) => 2 + datum.cites
             } }}
             data={data}
             x="field"
             y="length"
             labels={() => ""}
-            labelComponent={<CenterLabel data={data} color={color.primary}/>}
+            labelComponent={<CenterLabel valKey='length' field={field} color={color.secondary}/>}
           />
 
           <VictoryBar
             style={{ data: {
-              fill: (d, a) => a ? color.secondary.highlight : color.secondary.base,
+              fill: color.secondary.base,
               width: ({datum}) => 2 + datum.cites
             } }}
             data={data}
             x="field"
             y="citedBy"
             labels={() => ""}
-            labelComponent={<CenterLabel field={field} data={data} color={color.secondary}/>}
+            labelComponent={<CenterLabel valKey='citedBy'  field={field} color={color.secondary}/>}
           />
+          
         </VictoryStack>
-        <Pistil color={color} innerRadius={(targetField[field] * percentFactor) * .85} />
+        <Pistil
+          color={color} 
+          citesSelf={targetField[field]}
+          innerRadius={(targetField[field] * percentFactor) * .85} />
       </VictoryChart>
     );
   }
