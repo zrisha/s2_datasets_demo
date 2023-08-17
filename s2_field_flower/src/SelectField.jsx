@@ -12,7 +12,7 @@ function SelectField(props){
             allowClear
             style={{ maxWidth: '500px', minWidth: '250px'}}
             placeholder="Select a field"
-            defaultValue={props.selectedFields}
+            value={props.selectedFields}
             onChange={handleChange}
         >
             {props.fields.map(item => (
